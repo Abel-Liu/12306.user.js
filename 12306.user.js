@@ -4,7 +4,6 @@
 // @version      0.1
 // @description  change order style and help query quickly
 // @author       abel
-// @require      https://code.jquery.com/jquery-2.2.2.min.js
 // @include      https://kyfw.12306.cn/*
 // @grant        none
 // ==/UserScript==
