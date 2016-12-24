@@ -1,12 +1,36 @@
 // ==UserScript==
 // @name         12306 order helper
 // @namespace    http://abelliu.com
-// @version      0.2
+// @version      0.3
 // @description  change order style and help query quickly
 // @author       abel
 // @include      https://kyfw.12306.cn/*
 // @grant        none
 // ==/UserScript==
+
+var orderType = 0;
+
+$(document).ready(function() {
+    defocusRefunded();
+    setQueryCondition();
+
+    if ($("#login_user")[0].innerHTML != "登录") {
+        $("#login_user").attr("href", "/otn/queryOrder/init");
+    }
+
+    addOrder();
+});
+
+function addOrder() {
+    var html = '<a href="####" class="abel-order1" id="abel_order_go" shape="rect" style="float: right;margin-right: 5px;">乘车日期</a>';
+    html += '<a href="####" class="abel-order2" id="abel_order_pre" shape="rect" style="float: right;margin-right: 5px;">订票日期</a>';
+    html += '<span style="float:right;">排序：</span>';
+    $("#query_what_order div").append(html);
+
+    $("#abel_order_go").click(function() {
+
+    });
+}
 
 function defocusRefunded() {
     var orderDiv = $(".order-item");
@@ -34,11 +58,6 @@ function setQueryCondition() {
     var end = formatDate(addDay(new Date(), 61), "yyyy-MM-dd");
     $('#queryEndDate').val(end);
 }
-
-$(document).ready(function() {
-    defocusRefunded();
-    setQueryCondition();
-});
 
 function formatDate(v, format) {
     if (!v) return "";
