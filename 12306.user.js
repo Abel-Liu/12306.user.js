@@ -8,8 +8,6 @@
 // @grant        none
 // ==/UserScript==
 
-var orderType = 0;
-
 $(document).ready(function() {
     defocusRefunded();
     setQueryCondition();
