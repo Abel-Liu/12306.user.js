@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         12306 order helper
 // @namespace    http://abelliu.com
-// @version      0.3
+// @version      1.0
 // @description  change order style and help query quickly
 // @author       abel
 // @include      https://kyfw.12306.cn/*
@@ -18,17 +18,43 @@ $(document).ready(function() {
         $("#login_user").attr("href", "/otn/queryOrder/init");
     }
 
-    addOrder();
+    addSort();
 });
 
-function addOrder() {
+var allOrders = new Array();
+
+function addSort() {
     var html = '<a href="####" class="abel-order1" id="abel_order_go" shape="rect" style="float: right;margin-right: 5px;">乘车日期</a>';
     html += '<a href="####" class="abel-order2" id="abel_order_pre" shape="rect" style="float: right;margin-right: 5px;">订票日期</a>';
     html += '<span style="float:right;">排序：</span>';
     $("#query_what_order div").append(html);
 
     $("#abel_order_go").click(function() {
+        sortOrder("time2");
+    });
 
+    $("#abel_order_pre").click(function() {
+        sortOrder("time");
+    });
+}
+
+function sortOrder(time_type) {
+    allOrders = new Array();
+    $(".order-item").addClass("close");
+
+    $("#orderinfobodyTable form").each(function(i, o) {
+        var time = new Date($(o).find("." + time_type + " strong").html());
+        allOrders.push({ time: time, html: o.outerHTML });
+    });
+
+    allOrders.sort(function(a, b) {
+        return new Date(a.time) - new Date(b.time);
+    });
+
+    $("#orderinfobodyTable").html("");
+
+    $.each(allOrders, function(i, o) {
+        $("#orderinfobodyTable").append(o.html);
     });
 }
 
