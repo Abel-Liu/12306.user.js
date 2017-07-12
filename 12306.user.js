@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         12306 order helper
 // @namespace    http://abelliu.com
-// @version      1.0
+// @version      1.1
 // @description  change order style and help query quickly
 // @author       abel
 // @include      https://kyfw.12306.cn/*
