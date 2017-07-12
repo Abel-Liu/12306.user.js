@@ -63,7 +63,7 @@ function defocusRefunded() {
         var refunded = 0;
         $(orderDiv[i]).find(".order-item-bd tr").each(function(i, o) {
             allItems++;
-            if (o.innerHTML.indexOf("已退票") > 0) {
+            if (o.innerHTML.indexOf("已退票") > 0 || o.innerHTML.indexOf("已改签") > 0) {
                 $(o).css("opacity", "0.3");
                 refunded++;
             }
